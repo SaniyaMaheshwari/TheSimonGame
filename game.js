@@ -13,6 +13,7 @@ var allAudios = [green, red, yellow, blue, gameover];
 var colours = ["green", "red", "yellow", "blue"];
 
 $(document).on("keypress", nextTile);
+$(document).on("click", nextTile);
 
 function nextTile(){
     var num = Math.floor(Math.random()*4);
@@ -25,6 +26,7 @@ function nextTile(){
     level++;
     $("h1").text("Level " + level);
     $(document).off("keypress");
+    $(document).off("click");
 }
 
 $(".green").on("click", function(){
@@ -62,7 +64,11 @@ function checkNext(){
         setTimeout(function(){
             $("body").removeClass("game-over");
         }, 200);
-        $(document).keypress(nextTile);
+        setTimeout(function(){
+            $(document).keypress(nextTile);
+            $(document).click(nextTile);
+        }, 1000);
+    
     }
 }
 
